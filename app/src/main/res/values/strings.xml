@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">TipSplitCalculator</string>
+    <string name="app_name">TipSplit</string>
+    <string name="total_tax_input">Bill Total with Tax:</string>
+    <string name="tip_amount_txt">Tip Amount:</string>
 </resources>
