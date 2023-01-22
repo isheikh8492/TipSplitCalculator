@@ -79,8 +79,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
+            android:id="@+id/tipRadioGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="calculate"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -236,10 +238,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/numberPeopleConstraint"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/totalPersonConstraint"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/clearButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
@@ -250,12 +251,26 @@
             android:text="Number of People:"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/numberPeopleInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#c9fdc9"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintEnd_toStartOf="@+id/GoButton"
+            app:layout_constraintStart_toStartOf="@+id/finalBillOutput"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/finalBillOutput"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="#c9fdc9"
@@ -263,18 +278,10 @@
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:textSize="20dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/numberPeopleTxt"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/totalPersonConstraint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/clearButton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/numberPeopleConstraint">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
         <TextView
             android:id="@+id/totalPersonTxt"
@@ -285,19 +292,38 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="180dp" />
+
+        <Button
+            android:id="@+id/GoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="calculate"
+            android:text="GO"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/numberPeopleInput"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/totalPersonInput"
-            android:layout_width="180dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#c9fdc9"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:textSize="20dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/totalPersonTxt"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_begin="50dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -309,7 +335,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalPersonConstraint" />
+        app:layout_constraintTop_toBottomOf="@+id/numberPeopleConstraint" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
