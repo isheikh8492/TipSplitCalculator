@@ -271,14 +271,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.508" />
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
+        <TextView
+            android:id="@+id/tipAmountTextView"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:background="#d3d3d3"
             android:ems="10"
-            android:inputType="numberDecimal"
             android:padding="5dp"
+            android:textAlignment="textEnd"
             android:textSize="20dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tipAmountTxt"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -305,14 +305,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/totalTipInput"
+        <TextView
+            android:id="@+id/totalTipTextView"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:background="#d3d3d3"
             android:ems="10"
-            android:inputType="numberDecimal"
             android:padding="5dp"
+            android:textAlignment="textEnd"
             android:textSize="20dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/totalTipTxt"
             app:layout_constraintEnd_toEndOf="parent" />

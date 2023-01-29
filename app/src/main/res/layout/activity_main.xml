@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TipAmountText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -34,6 +35,7 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:padding="5dp"
+            android:textAlignment="textEnd"
             android:textSize="20dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/billTotalTaxTxt"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -82,7 +84,7 @@
             android:id="@+id/tipRadioGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="calculate"
+            android:onClick="calculateTipAndTotalWithTip"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +102,7 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
+                android:onClick="calculateTipAndTotalWithTip"
                 android:text="12%"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -116,6 +119,7 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
+                android:onClick="calculateTipAndTotalWithTip"
                 android:text="15%"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -132,6 +136,7 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
+                android:onClick="calculateTipAndTotalWithTip"
                 android:text="18%"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -149,6 +154,7 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
+                android:onClick="calculateTipAndTotalWithTip"
                 android:text="20%"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -169,6 +175,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tipPercentConstraint">
 
         <TextView
+            android:id="@+id/tipAmountTextView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"
+            android:ems="10"
+            android:padding="5dp"
+            android:textAlignment="textEnd"
+            android:textSize="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tipAmountTxt"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
             android:id="@+id/tipAmountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,17 +197,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:background="#d3d3d3"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:textSize="20dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tipAmountTxt"
-            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -202,6 +209,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tipAmountConstraint">
 
         <TextView
+            android:id="@+id/totalTipTextView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"
+            android:ems="10"
+            android:padding="5dp"
+            android:textAlignment="textEnd"
+            android:textSize="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/totalTipTxt"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
             android:id="@+id/totalTipTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -212,17 +231,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/totalTipInput"
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:background="#d3d3d3"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:textSize="20dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/totalTipTxt"
-            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -306,7 +314,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:onClick="calculate"
+            android:onClick="calculateTotalPerPerson"
             android:text="GO"
             android:textSize="20sp"
             android:textStyle="bold"
