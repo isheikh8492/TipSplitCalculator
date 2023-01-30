@@ -273,25 +273,22 @@
             android:padding="5dp"
             android:textAlignment="center"
             android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintBaseline_toBaselineOf="@+id/numberPeopleTxt"
             app:layout_constraintEnd_toStartOf="@+id/GoButton"
-            app:layout_constraintStart_toStartOf="@+id/finalBillOutput"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/TotalPerPersonTextView" />
 
-        <EditText
-            android:id="@+id/finalBillOutput"
+        <TextView
+            android:id="@+id/TotalPerPersonTextView"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:background="#c9fdc9"
+            android:background="#d3d3d3"
             android:ems="10"
-            android:inputType="numberDecimal"
             android:padding="5dp"
             android:textAlignment="textEnd"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@+id/totalPersonTxt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="@+id/guideline12" />
+            app:layout_constraintStart_toStartOf="@+id/guideline8" />
 
         <TextView
             android:id="@+id/totalPersonTxt"

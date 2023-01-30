@@ -71,9 +71,8 @@
                 android:padding="5dp"
                 android:textAlignment="center"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBaseline_toBaselineOf="@+id/numberPeopleTxt"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -356,6 +355,18 @@
         app:layout_constraintTop_toBottomOf="@+id/numberPeopleGoConstraint">
 
         <TextView
+            android:id="@+id/TotalPerPersonTextView"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"
+            android:ems="10"
+            android:padding="5dp"
+            android:textAlignment="textEnd"
+            android:textSize="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/totalPersonTxt"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
             android:id="@+id/totalPersonTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -364,20 +375,6 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/finalBillOutput"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:background="#d3d3d3"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:textAlignment="textEnd"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
