@@ -106,50 +106,70 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         tipAmountOutput.setText(savedInstanceState.getString("TIP_AMOUNT"));
         totalWithTipOutput.setText(savedInstanceState.getString("TOTAL_WITH_TIP"));
-        finalBillOutput.setText(savedInstanceState.getString("FINAL_BILL"));
+        finalBillOutput.setText(savedInstanceState.getString("TOTAL_WITH_TIP"));
 
     }
 
     public void calculateTipAndTotalWithTip(View v) {
         int radioButtonId = tipPercentageInput.getCheckedRadioButtonId();
-        BigDecimal totalBillWithTax = new BigDecimal(totalBillInput.getText().toString());
-        BigDecimal tipPercentage;
-        BigDecimal tipAmount;
-        if ((radioButtonId != -1) && (!Float.isNaN(Float.parseFloat(totalBillInput.getText().toString())))){
-            RadioButton selectedTipAmount = tipPercentageInput.findViewById(radioButtonId);
-            tipPercentage = new BigDecimal(selectedTipAmount.getText().subSequence(0, 2).toString()).multiply(BigDecimal.valueOf(0.01));
-            tipAmount = totalBillWithTax.multiply(tipPercentage).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
-            tipAmountOutput.setText(String.format("$%.2f", tipAmount));
-            totalWithTipOutput.setText(String.format("$%.2f", totalWithTipAmount));
-            totalBillInput.setText(String.format("$%.2f", totalBillWithTax));
+        String totalBillTextInputString = totalBillInput.getText().toString();
+        if (totalBillTextInputString.isEmpty()) {
+            Toast.makeText(this, "Please enter Total Bill with Tax before tipping", Toast.LENGTH_SHORT).show();
+            tipPercentageInput.check(-1);
+        } else {
+            if (totalBillTextInputString.contains("$")) {
+                totalBillTextInputString = totalBillInput.getText().toString().substring(1);
+            }
+            BigDecimal totalBillWithTax;
+            BigDecimal tipPercentage;
+            BigDecimal tipAmount;
+
+            if ((radioButtonId != -1) && (!Float.isNaN(Float.parseFloat(totalBillTextInputString)))){
+                RadioButton selectedTipAmount = tipPercentageInput.findViewById(radioButtonId);
+                totalBillWithTax = new BigDecimal(totalBillTextInputString);
+                tipPercentage = new BigDecimal(selectedTipAmount.getText().subSequence(0, 2).toString()).multiply(BigDecimal.valueOf(0.01));
+                tipAmount = totalBillWithTax.multiply(tipPercentage).setScale(2, RoundingMode.HALF_UP);
+                BigDecimal totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
+                tipAmountOutput.setText(String.format("$%.2f", tipAmount));
+                totalWithTipOutput.setText(String.format("$%.2f", totalWithTipAmount));
+                totalBillInput.setText(String.format("$%.2f", totalBillWithTax));
+            }
         }
+
     }
 
     public void calculateTotalPerPerson(View v) {
         int radioButtonId = tipPercentageInput.getCheckedRadioButtonId();
-        BigDecimal totalBillWithTax = null;
-        BigDecimal tipPercentage;
-        BigDecimal tipAmount;
-        BigDecimal totalWithTipAmount = null;
-        if ((radioButtonId != -1) && (!Float.isNaN(Float.parseFloat(totalBillInput.getText().toString().substring(1))))){
-            RadioButton selectedTipAmount = tipPercentageInput.findViewById(radioButtonId);
-            totalBillWithTax = new BigDecimal(totalBillInput.getText().toString().substring(1));
-            tipPercentage = new BigDecimal(selectedTipAmount.getText().subSequence(0, 2).toString()).multiply(BigDecimal.valueOf(0.01));
-            tipAmount = totalBillWithTax.multiply(tipPercentage).setScale(2, RoundingMode.HALF_UP);
-            tipAmountOutput.setText(String.format("$%.2f", tipAmount));
-            totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
-            totalWithTipOutput.setText(String.format("$%.2f", totalWithTipAmount));
-        }
-        if ((totalWithTipAmount == null) || (totalBillWithTax == null)) {
-            Toast.makeText(this, "Please enter Total Bill with Tax before pressing this button", Toast.LENGTH_SHORT).show();
-        }
-        else if (noOfPeopleInput.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Number of People input field is empty", Toast.LENGTH_SHORT).show();
+        String totalBillTextInputString = totalBillInput.getText().toString();
+        if (totalBillTextInputString.isEmpty()) {
+            Toast.makeText(this, "Please enter Total Bill with Tax before tipping", Toast.LENGTH_SHORT).show();
+            tipPercentageInput.check(-1);
         } else {
-            BigDecimal noOfPeople = new BigDecimal(noOfPeopleInput.getText().toString());
-            BigDecimal totalDividedByFour = totalWithTipAmount.divide(noOfPeople, 2, RoundingMode.HALF_UP);
-            finalBillOutput.setText(String.format("$%.2f", totalDividedByFour));
+            if (totalBillTextInputString.contains("$")) {
+                totalBillTextInputString = totalBillInput.getText().toString().substring(1);
+            }
+            BigDecimal totalBillWithTax = null;
+            BigDecimal tipPercentage;
+            BigDecimal tipAmount;
+            BigDecimal totalWithTipAmount = null;
+            if ((radioButtonId != -1) && (!Float.isNaN(Float.parseFloat(totalBillInput.getText().toString().substring(1))))){
+                RadioButton selectedTipAmount = tipPercentageInput.findViewById(radioButtonId);
+                totalBillWithTax = new BigDecimal(totalBillTextInputString);
+                tipPercentage = new BigDecimal(selectedTipAmount.getText().subSequence(0, 2).toString()).multiply(BigDecimal.valueOf(0.01));
+                tipAmount = totalBillWithTax.multiply(tipPercentage).setScale(2, RoundingMode.HALF_UP);
+                tipAmountOutput.setText(String.format("$%.2f", tipAmount));
+                totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
+                totalWithTipOutput.setText(String.format("$%.2f", totalWithTipAmount));
+            }
+            if ((totalWithTipAmount == null) || (totalBillWithTax == null)) {
+                Toast.makeText(this, "Please enter Total Bill with Tax before pressing this button", Toast.LENGTH_SHORT).show();
+            } else if (noOfPeopleInput.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Number of People input field is empty", Toast.LENGTH_SHORT).show();
+            } else {
+                BigDecimal noOfPeople = new BigDecimal(noOfPeopleInput.getText().toString());
+                BigDecimal totalDividedByFour = totalWithTipAmount.divide(noOfPeople, 2, RoundingMode.HALF_UP);
+                finalBillOutput.setText(String.format("$%.2f", totalDividedByFour));
+            }
         }
     }
 }

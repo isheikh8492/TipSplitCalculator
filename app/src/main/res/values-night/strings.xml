@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TipSplit</string>
-    <string name="total_tax_input">Bill Total with Tax:</string>
-    <string name="tip_amount_txt">Tip Amount:</string>
     <string name="go">GO</string>
     <string name="number_of_people">Number of People:</string>
     <string name="clear">CLEAR</string>
