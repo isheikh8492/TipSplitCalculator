@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         tipAmountOutput.setText(savedInstanceState.getString("TIP_AMOUNT"));
         totalWithTipOutput.setText(savedInstanceState.getString("TOTAL_WITH_TIP"));
-        finalBillOutput.setText(savedInstanceState.getString("TOTAL_WITH_TIP"));
+        finalBillOutput.setText(savedInstanceState.getString("FINAL_BILL"));
 
     }
 
@@ -171,5 +171,14 @@ public class MainActivity extends AppCompatActivity {
                 finalBillOutput.setText(String.format("$%.2f", totalDividedByFour));
             }
         }
+    }
+
+    public void clear(View v) {
+        totalBillInput.setText("");
+        tipPercentageInput.check(-1);
+        tipAmountOutput.setText("");
+        totalWithTipOutput.setText("");
+        noOfPeopleInput.setText("");
+        finalBillOutput.setText("");
     }
 }

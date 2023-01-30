@@ -97,6 +97,7 @@
         android:id="@+id/clearButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:onClick="clear"
         android:text="@string/clear"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
