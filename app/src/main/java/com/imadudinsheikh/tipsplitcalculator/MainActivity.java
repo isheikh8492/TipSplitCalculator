@@ -1,5 +1,6 @@
 package com.imadudinsheikh.tipsplitcalculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -90,6 +91,22 @@ public class MainActivity extends AppCompatActivity {
         finalBillOutput = findViewById(R.id.finalBillOutput);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("TIP_AMOUNT", tipAmountOutput.getText().toString());
+        outState.putString("TOTAL_WITH_TIP", totalWithTipOutput.getText().toString());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        tipAmountOutput.setText(savedInstanceState.getString("TIP_AMOUNT"));
+        totalWithTipOutput.setText(savedInstanceState.getString("TOTAL_WITH_TIP"));
+
+    }
+
     public void calculateTipAndTotalWithTip(View v) {
         int radioButtonId = tipPercentageInput.getCheckedRadioButtonId();
         BigDecimal totalBillWithTax = new BigDecimal(totalBillInput.getText().toString());
@@ -117,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
             totalBillWithTax = new BigDecimal(totalBillInput.getText().toString().substring(1));
             tipPercentage = new BigDecimal(selectedTipAmount.getText().subSequence(0, 2).toString()).multiply(BigDecimal.valueOf(0.01));
             tipAmount = totalBillWithTax.multiply(tipPercentage).setScale(2, RoundingMode.HALF_UP);
-            totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
             tipAmountOutput.setText(String.format("$%.2f", tipAmount));
+            totalWithTipAmount = totalBillWithTax.add(tipAmount).setScale(2, RoundingMode.HALF_UP);
             totalWithTipOutput.setText(String.format("$%.2f", totalWithTipAmount));
         }
         if (noOfPeopleInput.getText().toString().isEmpty()) {
