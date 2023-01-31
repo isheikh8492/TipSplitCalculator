@@ -144,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
         if (totalBillTextInputString.isEmpty()) {
             Toast.makeText(this, "Please enter Total Bill with Tax before tipping", Toast.LENGTH_SHORT).show();
             tipPercentageInput.check(-1);
+        } else if (noOfPeopleInput.getText().toString().equals("0")) {
+            Toast.makeText(this, "Value for number of people should be a positive non-zero integer", Toast.LENGTH_SHORT).show();
+            noOfPeopleInput.setText("");
         } else {
             if (totalBillTextInputString.contains("$")) {
                 totalBillTextInputString = totalBillInput.getText().toString().substring(1);
